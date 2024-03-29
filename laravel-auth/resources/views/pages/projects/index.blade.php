@@ -20,12 +20,17 @@
       @foreach($projects as $item)
         <tr>
           <td>{{$item->id}}</td>
-          <td>{{$item->title}}</td>
+          <td>
+            <a href="{{route('dashboard.project.show', $item->id)}}">
+              {{$item->title}}
+            </a>
+            
+          </td>
           <td>{{$item->content}}</td>
           <td>{{$item->slug}}</td>
           <td>{{$item->cover_image}}</td>
           <td>
-            <a class="btn btn-primary" href="{{route('dashboard.project.edit',$item->id)}}">Modifica</a>
+            <a class="btn btn-primary" href="{{route('dashboard.project.edit',$item->slug)}}">Modifica</a>
             <form method="POST" action="{{route('dashboard.project.destroy',$item->id)}}">
                 @csrf
                 @method('DELETE')
