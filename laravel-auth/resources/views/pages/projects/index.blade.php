@@ -12,6 +12,7 @@
       <th scope="col">Title</th>
       <th scope="col">Content</th>
       <th scope="col">Slug</th>
+      <th scope="col">Cover Image</th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
           <td>{{$item->title}}</td>
           <td>{{$item->content}}</td>
           <td>{{$item->slug}}</td>
+          <td>{{$item->cover_image}}</td>
           <td>
             <a class="btn btn-primary" href="{{route('dashboard.project.edit',$item->id)}}">Modifica</a>
             <form method="POST" action="{{route('dashboard.project.destroy',$item->id)}}">
