@@ -31,7 +31,9 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->prefix('dashboard')->name('dashboard.')->group(function () {
-    Route::resource('project',ProjectController::class);
+    Route::resource('project',ProjectController::class)->parameters([
+        'projects'=> 'project:slug',
+    ]);
 
 });
 
