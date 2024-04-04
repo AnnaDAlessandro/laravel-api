@@ -4,7 +4,7 @@
 <main class="container py-5">
     <h1>Singolo Project</h1>
     <p>
-        Cuao
+        Ciao
     </p>
   
 </main>
