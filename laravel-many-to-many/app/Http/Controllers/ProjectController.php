@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Category;
+use App\Models\Technology;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Support\Facades\Storage; 
@@ -28,7 +29,8 @@ class ProjectController extends Controller
     {
 
         $categories = Category::all();
-        return view('pages.projects.create', compact('categories'));
+        $technologies = Technology::all();
+        return view('pages.projects.create', compact('categories','technologies'));
     }
 
     /**
@@ -54,6 +56,11 @@ class ProjectController extends Controller
 
         $new_project=Project::create($val_data);
 
+        if($request->has('technologies')){
+            $new_project->technologies()->attach($request->technologies);
+
+        }
+
         return redirect()->route('dashboard.project.index');
 
 
@@ -74,8 +81,9 @@ class ProjectController extends Controller
 
     {
         $categories = Category::all();
+        $technologies = Technology::all();
 
-        return view('pages.projects.edit',compact('project', 'categories'));
+        return view('pages.projects.edit',compact('project', 'categories','technologies'));
     }
 
     /**

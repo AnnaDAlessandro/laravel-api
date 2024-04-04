@@ -21,6 +21,43 @@
    
    >
    </div>
+   <div class="mb-3">
+    <label for="category_id" class="form-label">Categories</label>
+    <select name="category_id" id="category_id" class="form-select @error('category_id') is-invalid @enderror">
+        <option value="">Select One</option>
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->name }}</option>
+        @endforeach
+    </select>
+    @error('category_id')
+        <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
+    
+</div>
+<div class="mb-3">
+
+  
+
+
+    <label for="technologies" class="form-label">Technologies</label>
+    <select multiple name="technologies[]" id="technologies" class="form-select @error('technologies') is-invalid @enderror"> 
+       @if($errors->any())
+       <option value="{{ $technology->id }}">{{in_array($technologies->id, old('technologies',[])) ? 'selected': ''}}</option>
+       @else
+       <option value="{{ $technology->id }}"
+       {{$projects->technologies->contains($technology->id)? 'selected' : ''}}>
+       {{$technology->name}}</option>
+
+
+      @endif
+        <option  value="">Select Technologies</option>
+        @foreach($technologies as $technology)
+            <option value="{{ $technology->id }}">{{ $technology->name }}</option>
+        @endforeach
+    </select>
+    
+    
+</div>
 
    <div class="mb-3">
     <label for="content" class="form-label">CONTENT</label>

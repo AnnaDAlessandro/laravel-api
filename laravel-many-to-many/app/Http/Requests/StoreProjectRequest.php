@@ -25,6 +25,7 @@ class StoreProjectRequest extends FormRequest
            'title'=> ['required','unique:projects','max:150'],
            'content'=> ['nullable'],
            'category_id'=> ['nullable','exists:categories,id'],
+           'technologies'=>['exists:technologies,id',]
 
         ];
     }
