@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
@@ -14,7 +15,9 @@ class Project extends Model
         'title',
         'content',
         'slug',
-        'cover_image'
+        'cover_image',
+        'category_id'
+
 
     ];
 
@@ -22,6 +25,12 @@ class Project extends Model
     {
 
         return Str::slug($title,'-');
+
+    }
+    public function category(): BelongsTo
+    {
+
+        return $this->belongsTo(Category::class);
 
     }
 }

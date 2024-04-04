@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section ('content')
-<main class="container py-5">
-    <h1>Singolo Project</h1>
+<main class="conteiner py-5">
+    <h1>{{$project->title}}</h1>
     <p>
-        Ciao
+       <strong>{{$project->category ? $project->category->name : 'Non ci sono categorie Selezionate'}}</strong>
     </p>
   
 </main>
