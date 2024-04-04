@@ -97,6 +97,12 @@ class ProjectController extends Controller
         $slug= Project::generateSlug($request->title);
         $val_data['slug']= $slug;
         $project->update($val_data);
+        
+        if($request->has('technologies')){
+            $project->technologies()->sync($request->technologies);
+
+        }
+
 
         return redirect()->route('dashboard.project.index');
 
@@ -108,6 +114,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        $project->technologies()->sync([]);
+
+
        $project->delete();
        return redirect()->route('dashboard.project.index');
 
